@@ -1,14 +1,5 @@
-body {
-  width: 80%;
-  margin: 20px auto;
-}
-
-.cardsLayout {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
-
-button {
-  margin-left: 5px;
+#root {
+  width: 1280px;
+  padding: 2rem;
+  text-align: center;
 }

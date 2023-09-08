@@ -12,7 +12,20 @@ export const fetchTodos = createAsyncThunk(
   'fetchTodoThunk',
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get('http://localhost:3001/todos')
+      const response = await axios.get('/api/users/my/tasks')
+      return response.data
+    } catch (error) {
+      console.log('error ====>', error);
+      return thunkAPI.rejectWithValue(error)
+    }
+  }
+)
+
+export const fetchTodosAll = createAsyncThunk(
+  'fetchTodosAllThunk',
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get('/api/tasks')
       return response.data
     } catch (error) {
       console.log('error ====>', error);
@@ -25,7 +38,13 @@ export const addTodo = createAsyncThunk(
   'addTodoThunk',
   async (todo: object, thunkAPI) => {
     try {
-      const response = await axios.post('http://localhost:3001/todos', todo)
+      console.log('todo!!', todo);
+      const response = await axios.post('/api/tasks', todo, {
+        headers: {
+          "Content-Type": "application/json",
+        }
+      })
+      console.log('response.data', response.data);
       return response.data
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
@@ -36,8 +55,9 @@ export const addTodo = createAsyncThunk(
 export const delTodo = createAsyncThunk(
   'delTodoThunk',
   async (id: number, thunkAPI) => {
+    console.log('id', id);
     try {
-      await axios.delete(`http://localhost:3001/todos/${id}`)
+      await axios.delete(`/api/tasks/${id}`)
       return id
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
@@ -54,7 +74,11 @@ export const editTodo = createAsyncThunk(
   'editTodoThunk',
   async ({ id, updatedTodo }: EditTodoPayload, thunkAPI) => {
     try {
-      const response = await axios.put(`http://localhost:3001/todos/${id}`, updatedTodo)
+      const response = await axios.put(`/api/tasks/${id}`, updatedTodo, {
+        headers: {
+          "Content-Type": "application/json",
+        }
+      })
       return { id, updatedTodo: response.data }
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
