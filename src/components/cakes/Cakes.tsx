@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 import '../../App.css'
-// import { useEffect } from 'react'
+// import { useEffect } from 'react'   
 // import { fetchTodos } from '../../store/todos/todos.action'
 import { RootState } from '../../store/store'
 import styles from './cakes.module.css'
@@ -35,10 +35,12 @@ function Cakes() {
       <section className={styles.wrapper}>
         <p>All cakes</p>
 
-        {!allCakes ? <p>No cakes</p> : allCakes.map((el) =>
+        {!allCakes ? <p>No cakes</p> : allCakes.map((el) => 
           <div key={el.id}>
             <p>{el.name}</p>
-            <img width='100px' src={`https://github.com/OlegKarimov/ArtCake_FrontEnd/blob/dev/Images/cupcakes/img/${el.id}.jpg?raw=true`} alt="pic" />
+            <p>{el.price}</p> 
+            <p>{el.category}</p> 
+            <img width='100px' src={`${el.imagePath}?raw=true`} alt="pic" />
           </div>
 
         )}
