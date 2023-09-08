@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addTodo, delTodo, editTodo, fetchTodos } from './todos.action';
+import { addTodo, delTodo, editTodo, fetchTodos, fetchTodosAll } from './todos.action';
 import { TodosState } from '../../types/todos.types';
 
 
@@ -8,7 +8,7 @@ import { TodosState } from '../../types/todos.types';
 const initialState: TodosState = {
   isLoading: false,
   error: null,
-  todos: []
+  todos: { tasks: [] }
 };
 
 export const todosSlice = createSlice({
@@ -17,6 +17,13 @@ export const todosSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
+      .addCase(fetchTodosAll.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(fetchTodosAll.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.todos = action.payload
+      })
       .addCase(fetchTodos.pending, (state) => {
         state.isLoading = true
       })
@@ -26,7 +33,7 @@ export const todosSlice = createSlice({
       })
       .addCase(fetchTodos.rejected, (state, action) => {
         state.isLoading = false
-        state.todos = []
+        state.todos = { tasks: [] }
         if (action.payload) {
           state.error = action.payload
         }
@@ -35,16 +42,16 @@ export const todosSlice = createSlice({
         // }
       })
       .addCase(addTodo.fulfilled, (state, action) => {
-        state.todos.push(action.payload)
+        state.todos.tasks.push(action.payload)
       })
       .addCase(delTodo.fulfilled, (state, action) => {
-        state.todos = state.todos.filter(todo => todo.id !== action.payload)
+        state.todos.tasks = state.todos.tasks.filter(todo => todo.id !== action.payload)
       })
       .addCase(editTodo.fulfilled, (state, action) => {
         const { id, updatedTodo } = action.payload;
-        const index = state.todos.findIndex((todo) => todo.id === id);
+        const index = state.todos.tasks.findIndex((todo) => todo.id === id);
         if (index !== -1) {
-          state.todos[index] = updatedTodo;
+          state.todos.tasks[index] = updatedTodo;
         }
       });
   }
