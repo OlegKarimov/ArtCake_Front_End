@@ -10,7 +10,7 @@ import { fetchUser } from './store/auth/auth.action';
 import AllTasks from './components/allTasks/AllTasks';
 import MainPage from './components/mainPage/MainPage';
 import Profile from './components/profile/Profile';
-import Cakes from './components/cakes/Cakes';
+import Cakes from './components/allCakes/Cakes';
 
 
 
