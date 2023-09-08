@@ -3,18 +3,19 @@ import { useDispatch } from 'react-redux'
 import { delTodo, editTodo } from '../../store/todos/todos.action'
 import { AppDispatch } from '../../store/store';
 import { useRef, useState } from 'react';
+import { useAppSelector } from '../../hooks/hooks';
 
 interface CardProps {
   name: string;
   id: number;
+  description: string;
 }
 
-export default function Card({ name, id }: CardProps) {
+export default function Card({ name, id, description }: CardProps) {
   const dispatch = useDispatch<AppDispatch>()
 
   const inputRef = useRef<HTMLInputElement | null>(null);
-
-
+  const { user } = useAppSelector(state => state.auth)
   const [editedName, setEditedName] = useState<string>(name);
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
@@ -51,10 +52,13 @@ export default function Card({ name, id }: CardProps) {
                 />
 
               ) : (
-                <h5 className="card-title">{name}</h5>
+                <>
+                  <h5 className="card-title">{name}</h5>
+                  <h5 className="card-title">{description}</h5>
+                </>
               )}
             </div>
-            <button onClick={() => dispatch(delTodo(id))} type="button" className="btn btn-danger">Del</button>
+            {user?.role === "ADMIN" && <button onClick={() => dispatch(delTodo(id))} type="button" className="btn btn-danger">Del</button>}
             <button type="submit" className="btn btn-primary">
               {isEditing ? 'Save' : 'Edit'}
             </button>
