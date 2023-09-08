@@ -20,4 +20,12 @@ export const cakes = {
   }
 }
 
+export const cakesByCategory = {
+  async getAllCakesByCategory(Category: string) {
+    const response = await axios.get<IAllCakes>('/api/cakes/category/'+Category)
+  //  /api/cakes/category/
+    console.log('getAllCakesByCategory', response.data);
+    return response.data
+  }
+}
 

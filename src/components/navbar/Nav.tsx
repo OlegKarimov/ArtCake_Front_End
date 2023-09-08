@@ -37,7 +37,7 @@ export default function Nav() {
                   <NavLink className="nav-link" to="/profile">My profile</NavLink>
                 </li>
                 <li>
-                  <NavLink className="nav-link" to="/cakes">Cakes</NavLink>
+                  <NavLink className="nav-link" to="/cakes">Cakes MENU</NavLink>
                 </li>
               </>
             ))
@@ -50,7 +50,7 @@ export default function Nav() {
         {
           user && (
             <li className="nav-item">
-              <NavLink className="nav-link" onClick={() => { dispatch(logoutUser()); navigate("/"); }} to="#">Logout</NavLink>
+              <NavLink className="nav-link" onClick={() => { dispatch(logoutUser()); navigate("/"); }} to="#"><strong>{user.firstName} {user.lastName}</strong>   Logout</NavLink>
             </li>
           )
         }
