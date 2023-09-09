@@ -4,7 +4,8 @@ import '../../App.css'
 // import { fetchTodos } from '../../store/todos/todos.action'
 import { RootState } from '../../store/store'
 import styles from './profile.module.css'
-import { cakes, managerServices } from '../../services/data.service'
+import { managerServices } from '../../services/orders.service'
+import { cakes } from '../../services/cakes.service'
 
 function Profile() {
   const { user } = useSelector((state: RootState) => state.auth)

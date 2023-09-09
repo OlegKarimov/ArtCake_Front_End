@@ -29,10 +29,12 @@ export default function Nav() {
               </li>
             ) :
             (
-              <>
+
+              /*<>
                 <li className="nav-item ">
                   <NavLink className="nav-link" to="/tasks">My tasks</NavLink>
-                </li>
+                </li> */
+              <>  
                 <li>
                   <NavLink className="nav-link" to="/profile">My profile</NavLink>
                 </li>
