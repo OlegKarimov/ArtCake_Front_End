@@ -14,7 +14,7 @@ function MainPage() {
     <>
       {!user ? (<h2>Try to login</h2>) : (
       <>
-      <h3>Cakes by category</h3>
+      <h4>Cakes by category</h4>
       <div>
       <p>___________________________________________________________________________________</p>
         <p>CHEESECAKES: {CakesByCategory('CHEESECAKES')}</p>

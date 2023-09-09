@@ -4,7 +4,7 @@ import '../../App.css'
 // import { fetchTodos } from '../../store/todos/todos.action'
 import { RootState } from '../../store/store'
 import styles from './cakes.module.css'
-import { cakes } from '../../services/data.service'
+import { cakes } from '../../services/cakes.service'
 import { useState } from 'react'
 import ICake from '../../types/cake.types'
 

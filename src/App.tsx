@@ -11,6 +11,7 @@ import AllTasks from './components/allTasks/AllTasks';
 import MainPage from './components/mainPage/MainPage';
 import Profile from './components/profile/Profile';
 import Cakes from './components/allCakes/Cakes';
+import Cake from "./components/cake/Cake";
 
 
 
@@ -43,6 +44,7 @@ function App(): JSX.Element {
           <Route path='/admin/tasks' element={<AllTasks />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/cakes' element={<Cakes />} />
+          <Route path='/cake/:cakeId' element={<Cake />} />
         </Route>
       </Routes>
     </BrowserRouter>
